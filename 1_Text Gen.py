@@ -1,12 +1,9 @@
-
-import os
-import replicate
 import streamlit as st
 import replicateBackend as rp
 
-st.sidebar.success("Select Your Choice")
-pick = st.file_uploader(label="Pick file")
-st.form("Submit")
+st.sidebar.success("Select Your Choice", icon="✅")
+
+
 # Initial messages
 if "messages" not in st.session_state.keys():
     st.session_state["messages"] = [{

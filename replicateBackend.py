@@ -7,6 +7,9 @@ import requests
 key = "r8_WEfoC4wjmOWO09WTedGMfCdPXWaB6GN0BQqdb"
 os.environ["REPLICATE_API_TOKEN"] = key
 
+temperature = 0.4
+prob = 0.5
+maxlength = 200
 
 # generate text from api
 def generateTextFromApi(user_prompt: str) ->str:
@@ -18,7 +21,7 @@ def generateTextFromApi(user_prompt: str) ->str:
     # LLM model
     output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5',
             input={"prompt": f"{pre_prompt} {user_prompt} Assistant: ", # Prompts
-                    "temperature":0.4, "top_p":0.9, "max_length":516, "repetition_penalty":1})  # Model par
+                    "temperature":temperature, "top_p":prob, "max_length":maxlength, "repetition_penalty":1})  # Model par
 
     full_response = ""
     for item in output:
